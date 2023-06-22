@@ -113,3 +113,10 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+tools/dscore/
+egs/**/log/
+egs/**/mfcc_hires/
+egs/**/wav/
+egs/**/*.zip
+egs/**/*.log
