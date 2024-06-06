@@ -15,8 +15,8 @@ if (system("mkdir -p $out_dir")) {
   die "Error making directory $out_dir";
 }
 
-open(CS, "<$db_base/DISC1/doc/callstat.tbl") || die  "Could not open $db_base/DISC1/doc/callstat.tbl";
-open(CI, "<$db_base/DISC1/doc/callinfo.tbl") || die  "Could not open $db_base/DISC1/doc/callinfo.tbl";
+open(CS, "<$db_base/disc1/doc/callstat.tbl") || die  "Could not open $db_base/DISC1/doc/callstat.tbl";
+open(CI, "<$db_base/disc1/doc/callinfo.tbl") || die  "Could not open $db_base/DISC1/doc/callinfo.tbl";
 open(GNDR, ">$out_dir/spk2gender") || die "Could not open the output file $out_dir/spk2gender";
 open(SPKR, ">$out_dir/utt2spk") || die "Could not open the output file $out_dir/utt2spk";
 open(WAV, ">$out_dir/wav.scp") || die "Could not open the output file $out_dir/wav.scp";
@@ -55,8 +55,8 @@ while (<CS>) {
   } else {
     $spkr1= "sw_" . $A[2];
     $spkr2= "sw_" . $A[3];
-    $gender1 = $A[4];
-    $gender2 = $A[5];
+    $gender1 = $A[5];
+    $gender2 = $A[6];
     if ($gender1 eq "M") {
       $gender1 = "m";
     } elsif ($gender1 eq "F") {

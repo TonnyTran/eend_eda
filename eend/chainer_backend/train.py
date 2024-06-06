@@ -110,6 +110,7 @@ def train(args):
     if args.gpu >= 0:
         gpuid = use_single_gpu()
         print('GPU device {} is used'.format(gpuid))
+        # print('GPU is used')
         model.to_gpu()
     else:
         gpuid = -1
@@ -197,7 +198,7 @@ def train(args):
             'validation/main/{}'.format(name)))
 
     trainer.extend(extensions.LogReport(log_name='log_iter',
-                   trigger=(1000, 'iteration')))
+                   trigger=(100, 'iteration')))
 
     trainer.extend(extensions.LogReport())
     trainer.extend(extensions.PrintReport(
@@ -214,7 +215,7 @@ def train(args):
          'validation/main/diarization_error_rate'],
         x_key='epoch',
         file_name='DER.png'))
-    trainer.extend(extensions.ProgressBar(update_interval=100))
+    trainer.extend(extensions.ProgressBar(update_interval=1))
     trainer.extend(extensions.snapshot(
         filename='snapshot_epoch-{.updater.epoch}'))
 

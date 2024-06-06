@@ -51,6 +51,7 @@ def use_single_gpu():
         assigned GPU id.
     """
     cvd = os.environ.get('CUDA_VISIBLE_DEVICES')
+    print(cvd)
     if cvd is None:
         # no GPUs are researved
         cvd = get_free_gpus()[0]

@@ -119,4 +119,9 @@ egs/**/log/
 egs/**/mfcc_hires/
 egs/**/wav/
 egs/**/*.zip
+egs/**/*.gz
 egs/**/*.log
+egs/DIHARD3_callhome/v1/
+egs/**/score_DER/
+egs/**/v2/trained_model/exp/
+egs/**/v2/run_submit.sh

@@ -14,4 +14,4 @@ use_attractor: True
 shuffle: True
 attractor_encoder_dropout: 0.1
 attractor_decoder_dropout: 0.1
-gpu: 0
+gpu: -1

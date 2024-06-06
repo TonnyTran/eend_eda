@@ -1,19 +1,6 @@
-# EEND (End-to-End Neural Diarization)
-
-EEND (End-to-End Neural Diarization) is a neural-network-based speaker diarization method.
-- BLSTM EEND (INTERSPEECH 2019)
-  - https://www.isca-speech.org/archive/Interspeech_2019/abstracts/2899.html
-- Self-attentive EEND (ASRU 2019)
-  - https://ieeexplore.ieee.org/abstract/document/9003959/
-
-The EEND extension for various number of speakers is also provided in this repository.
-- Self-attentive EEND with encoder-decoder based attractors
-  - https://arxiv.org/abs/2005.09921
+# EEND-EDA (End-to-End Neural Diarization)
 
 ## Install tools
-### Requirements
- - NVIDIA CUDA GPU
- - CUDA Toolkit (8.0 <= version <= 10.1)
 
 ### Install kaldi and python environment
 ```bash
@@ -33,31 +20,15 @@ make
     - if you need to specify your CUDA path
       ```bash
       cd tools
-      make CUDA_PATH=/your/path/to/cuda-8.0
+      make CUDA_PATH=/opt/ohpc/pub/cuda/11.1
       ```
-      This command installs cupy-cudaXX according to your CUDA version.
-      See https://docs-cupy.chainer.org/en/stable/install.html#install-cupy
 
-## Test recipe (mini_librispeech)
-### Configuration
-- Modify `egs/mini_librispeech/v1/cmd.sh` according to your job schedular.
-If you use your local machine, use "run.pl".
-If you use Grid Engine, use "queue.pl"
-If you use SLURM, use "slurm.pl".
-For more information about cmd.sh see http://kaldi-asr.org/doc/queue.html.
-### Data preparation
+Install dscore
 ```bash
-cd egs/mini_librispeech/v1
-./run_prepare_shared.sh
+./install_dscore.sh
 ```
-### Run training, inference, and scoring
-```bash
-./run.sh
-```
-- If you use encoder-decoder based attractors [3], modify `run.sh` to use `config/eda/{train,infer}.yaml`
-- See `RESULT.md` and compare with your result.
 
-## CALLHOME two-speaker experiment
+## CALLHOME + DIHARD3 experiment
 ### Configuraition
 - Modify `egs/callhome/v1/cmd.sh` according to your job schedular.
 If you use your local machine, use "run.pl".
@@ -87,25 +58,3 @@ local/run_blstm.sh
 ./run_eda.sh
 ```
 
-## References
-[1] Yusuke Fujita, Naoyuki Kanda, Shota Horiguchi, Kenji Nagamatsu, Shinji Watanabe, "
-End-to-End Neural Speaker Diarization with Permutation-free Objectives," Proc. Interspeech, pp. 4300-4304, 2019
-
-[2] Yusuke Fujita, Naoyuki Kanda, Shota Horiguchi, Yawen Xue, Kenji Nagamatsu, Shinji Watanabe, "
-End-to-End Neural Speaker Diarization with Self-attention," Proc. ASRU, pp. 296-303, 2019
-
-[3] Shota Horiguchi, Yusuke Fujita, Shinji Watanabe, Yawen Xue, Kenji Nagamatsu, "
-End-to-End Speaker Diarization for an Unknown Number of Speakers with Encoder-Decoder Based Attractors," Proc. INTERSPEECH, 2020
-
-
-
-## Citation
-```
-@inproceedings{Fujita2019Interspeech,
- author={Yusuke Fujita and Naoyuki Kanda and Shota Horiguchi and Kenji Nagamatsu and Shinji Watanabe},
- title={{End-to-End Neural Speaker Diarization with Permutation-free Objectives}},
- booktitle={Interspeech},
- pages={4300--4304}
- year=2019
-}
-```
