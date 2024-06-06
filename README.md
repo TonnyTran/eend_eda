@@ -23,38 +23,39 @@ make
       make CUDA_PATH=/opt/ohpc/pub/cuda/11.1
       ```
 
-Install dscore
+<!-- Install dscore
 ```bash
 ./install_dscore.sh
-```
+``` -->
 
-## CALLHOME + DIHARD3 experiment
+## DIHARD3 experiment
 ### Configuraition
-- Modify `egs/callhome/v1/cmd.sh` according to your job schedular.
+- Modify `egs/DIHARD3_callhome/v2/cmd.sh` according to your job schedular.
 If you use your local machine, use "run.pl".
 If you use Grid Engine, use "queue.pl"
 If you use SLURM, use "slurm.pl".
 For more information about cmd.sh see http://kaldi-asr.org/doc/queue.html.
-- Modify `egs/callhome/v1/run_prepare_shared.sh` according to storage paths of your corpora.
 
-### Data preparation
+### 1. Data preparation
 ```bash
-cd egs/callhome/v1
-./run_prepare_shared.sh
-# If you want to conduct 1-4 speaker experiments, run below.
-# You also have to set paths to your corpora properly.
-./run_prepare_shared_eda.sh
+cd egs/DIHARD3_callhome/v2
+# Prepare DIHARD3 data in Kaldi format
+./run_prepare_DIHARD.sh
+# NOTE: change parameter DIHARD_DEV_DIR, DIHARD_EVAL_DIR according to your location of DIHARD3 Dev and Eval sets
+
+# Prepare simulated training dataset (from 1 to 4 speakers)
+./run_prepare_simulated_data.sh
+# NOTE: You also have to set paths to your corpora properly including: data_root, musan_root, simu_actual_dirs.
 ```
-### Self-attention-based model using 2-speaker mixtures
+### 2. Train EEND-EDA model
 ```bash
-./run.sh
+./run_eda_8k.sh
 ```
-### BLSTM-based model using 2-speaker mixtures
+### 3. Inference EEND-EDA model on DIHARD3 using trained model
 ```bash
-local/run_blstm.sh
+./infer_eda.sh
+# Note: the EEND_EDA trained model is saved in folder trained_model
 ```
-### Self-attention-based model with EDA using 1-4-speaker mixtures
-```bash
-./run_eda.sh
-```
+
+
 
