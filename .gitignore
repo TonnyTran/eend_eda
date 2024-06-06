@@ -126,3 +126,4 @@ egs/DIHARD3_callhome/v1/conf/
 egs/**/score_DER/
 egs/**/v2/trained_model/exp/
 egs/**/v2/run_submit.sh
+tools/install_dscore.sh
